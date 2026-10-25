@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAVAN TERMINAL</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;background:#020202;color:#00ff66;
+  font-family:monospace;padding:14px;
+}
+.wrap{max-width:900px;margin:auto}
+header{
+  text-align:center;border:1px solid #ff2222;
+  padding:20px 8px;margin-bottom:15px;
+  box-shadow:0 0 15px #ff000022;
+}
+h1{
+  color:#ff2222;font-size:clamp(25px,6vw,48px);
+  text-shadow:0 0 15px red;margin:5px;
+}
+.sub{color:#aaa;font-size:12px}
+.grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.box{
+  border:1px solid #00ff6680;padding:14px;
+  background:#050805;min-width:0;
+  box-shadow:0 0 10px #00ff660a;
+}
+h3{color:#ff3030;margin-top:0;font-size:14px}
+p,li{font-size:12px;line-height:1.8;overflow-wrap:anywhere}
+.red{color:#ff3030}
+.white{color:#eee}
+button{
+  display:block;width:100%;margin:9px 0;padding:12px;
+  background:#080808;color:#00ff66;
+  border:1px solid #00ff66;font-family:monospace;
+  font-weight:bold;cursor:pointer;
+}
+button:active{background:#00ff66;color:black}
+#console{
+  min-height:150px;white-space:pre-wrap;
+  overflow-wrap:anywhere;line-height:1.8;font-size:12px;
+}
+.bar{height:8px;background:#222;margin:6px 0 12px}
+.bar span{display:block;height:100%;background:#00ff66}
+footer{text-align:center;color:#777;font-size:11px;padding:20px 0}
+@media(max-width:520px){
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<header>
+  <h1>☠ RAVAN TERMINAL ☠</h1>
+  <p class="red">GOD OF LANKA • MASTER OF DARKNESS</p>
+  <div class="sub">PERSONAL TERMINAL • SIMULATION MODE</div>
+</header>
+
+<div class="grid">
+
+<section class="box">
+<h3>[ SYSTEM BOOT ]</h3>
+<div id="boot"></div>
+</section>
+
+<section class="box">
+<h3>[ USER PROFILE ]</h3>
+<p>Name: <span class="white">RAVAN</span></p>
+<p>Status: <span class="white">ONLINE</span></p>
+<p>Role: <span class="white">Student & Creator</span></p>
+<p>Interests: <span class="white">Coding / Gaming / Cricket</span></p>
+<p>Mode: <span class="white">Dark Terminal</span></p>
+</section>
+
+<section class="box">
+<h3>[ SYSTEM STATUS ]</h3>
+<p>Interface <span class="red">ACTIVE</span></p>
+<p>Encryption: AES-256 (display only)</p>
+<p>Profile: LOADED</p>
+<p>CPU DISPLAY</p>
+<div class="bar"><span style="width:78%"></span></div>
+<p>Memory DISPLAY</p>
+<div class="bar"><span style="width:62%"></span></div>
+<p class="sub">Illustrative values, not live diagnostics.</p>
+</section>
+
+<section class="box">
+<h3>[ COMMAND CENTER ]</h3>
+<button onclick="run('boot')">01 / INITIALIZE</button>
+<button onclick="run('scan')">02 / DEMO SCAN</button>
+<button onclick="run('profile')">03 / WHO AM I?</button>
+<button onclick="run('warning')">04 / SECURITY ALERT</button>
+</section>
+
+<section class="box" style="grid-column:1/-1">
+<h3>[ TERMINAL OUTPUT ]</h3>
+<div id="console">ravan@terminal:~$ awaiting command...</div>
+</section>
+
+</div>
+
+<footer>
+RAVAN TERMINAL V2.0<br><br>
+VISUAL SIMULATION ONLY • NO REAL SYSTEM ACCESS
+</footer>
+
+</div>
+
+<script>
+const bootLines = [
+ "[+] Initializing RAVAN interface...",
+ "[+] Loading visual modules...",
+ "[+] Profile database loaded.",
+ "[+] Terminal animation ready.",
+ "[✓] SYSTEM READY."
+];
+
+let i = 0;
+function boot(){
+ if(i < bootLines.length){
+   document.getElementById("boot").innerHTML +=
+   `<p>${bootLines[i]}</p>`;
+   i++;
+   setTimeout(boot,500);
+ }
+}
+boot();
+
+function run(cmd){
+ const out = document.getElementById("console");
+ const commands = {
+  boot: [
+   "Initializing RAVAN TERMINAL...",
+   "Loading interface modules...",
+   "All visual modules ready.",
+   "STATUS: COMPLETE"
+  ],
+  scan: [
+   "Starting DEMO scan...",
+   "Checking local page interface...",
+   "No external devices contacted.",
+   "DEMO SCAN COMPLETE."
+  ],
+  profile: [
+   "USER: RAVAN",
+   "ROLE: STUDENT & CREATOR",
+   "INTERESTS: CODING, GAMING, CRICKET",
+   "PROFILE: ACTIVE"
+  ],
+  warning: [
+   "!!! SECURITY NOTICE !!!",
+   "This is a visual simulation.",
+   "No real target is connected.",
+   "No system has been accessed."
+  ]
+ };
+ out.textContent = "ravan@terminal:~$ " + cmd + "\n\n";
+ let lines = commands[cmd] || ["Unknown command."];
+ let n = 0;
+ function type(){
+  if(n < lines.length){
+   out.textContent += "[+] " + lines[n] + "\n";
+   n++;
+   setTimeout(type,350);
+  }
+ }
+ type();
+}
+</script>
+</body>
+</html>
